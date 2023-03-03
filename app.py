@@ -38,6 +38,7 @@ if selected == "Home":
                 unsafe_allow_html=True
                 )  
 if selected == "Classification":
+    st.dataframe(bld)
     with st.sidebar:
                 selected = option_menu(
                     menu_title="Classification",  # required
