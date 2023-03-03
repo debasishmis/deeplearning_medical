@@ -27,7 +27,6 @@ selected = option_menu(
         )
 
 if selected == "Home":
-    st.snow()
     st.markdown('''
                 <p style="font-family:Optima; color:#3A7355; text-align: center;font-size: 100px;"><strong>
                   Medical Image Analysis and Classification
