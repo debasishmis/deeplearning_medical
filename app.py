@@ -28,7 +28,7 @@ selected = option_menu(
 
 if selected == "Home":
     st.markdown('''
-                <p style="font-family:Optima; color:White; text-align: center;font-size: 100px;"><strong>
+                <p style="font-family:Optima; color:#3A7355; text-align: center;font-size: 100px;"><strong>
                   Medical Image Analysis and Classification
                 </strong></p>''',
                 unsafe_allow_html=True
