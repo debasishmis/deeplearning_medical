@@ -3,3 +3,4 @@ Pillow==9.4.0
 streamlit==1.19.0
 streamlit_option_menu==0.3.2
 medmnist == 2.1.0
+torchvision==0.2.2
