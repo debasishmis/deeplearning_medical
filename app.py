@@ -2,7 +2,10 @@ import numpy as np
 import streamlit as st
 from PIL import Image as im
 from streamlit_option_menu import option_menu
-
+import medmnist
+from medmnist import *
+from medmnist.dataset import BreastMNIST
+from medmnist.dataset import BloodMNIST
 
 
 st. set_page_config(layout="wide")
