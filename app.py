@@ -2,11 +2,13 @@ import numpy as np
 import streamlit as st
 from PIL import Image as im
 from streamlit_option_menu import option_menu
-import medmnist
-from medmnist import *
 from medmnist.dataset import BreastMNIST
 from medmnist.dataset import BloodMNIST
 
+brst = BreastMNIST(split='train', download=True)
+bld = BloodMNIST(split='train', download=True)
+brst_train_images, brst_train_labels =brst.imgs,brst.labels
+bld_train_images, bld_train_labels =bld.imgs,bld.labels
 
 st. set_page_config(layout="wide")
 
