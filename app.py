@@ -14,6 +14,7 @@ def predict(image):
     pred = cnn.predict(img)
     return pred
 
+load_model=pickle.load(open('train_model.sav','rb'))
 
 st. set_page_config(layout="wide")
 
