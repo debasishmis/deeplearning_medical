@@ -13,13 +13,14 @@ from keras.models import Sequential
 from keras.models import Model
 from tensorflow.keras import datasets, layers, models
 from tensorflow import keras
+import pickle
 
 
-filename = "my_model.joblib"
-loaded_model = joblib.load(filename)
+filename = "model_bld.sav"
+loaded_model1 = pickle.load( open(filename, "rb" ) )
 
-filename1 = "my_model1.joblib"
-loaded_model1 = joblib.load(filename1)
+filename = "model_brst.sav"
+loaded_model = pickle.load( open(filename, "rb" ) )
 
 def preprocess(image):
     # Convert the image to a PIL image object
@@ -46,7 +47,7 @@ st.set_page_config(layout="wide")
 
 selected = option_menu(
     menu_title=None,  # required
-    options=["Home", "Bloodminst","Breastminst", "Credits"],  # required
+    options=["Home", "Bloodmnist","Breastmnist", "Credits"],  # required
     icons=["house", "book", "envelope"],  # optional
     menu_icon="cast",  # optional
     default_index=0,  # optional
@@ -72,14 +73,72 @@ if selected == "Home":
         unsafe_allow_html=True
     )  
 
-if selected == "Bloodminst":
+
+if selected == "Breastmnist":
+    st.title('Image Classifier')
+    uploaded_file1 = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+    with st.sidebar:
+        selected2 = option_menu(
+            menu_title="Model Selection",  # required
+            options=["CNN Breastmnist", "Model2","Best Model"],  # required
+            icons=["circle", "square","traingle"],  # optional
+            menu_icon="cast",  # optional
+            default_index=0,  # optional
+            
+        )
+    if selected2== "CNN Breastmnist" : 
+        if uploaded_file1 is not None:
+            with st.sidebar:
+                st.image(uploaded_file1, caption='Uploaded Image', use_column_width=True)
+                img = im.open(uploaded_file1)
+            img = im.open(uploaded_file1)
+            img = preprocess(np.asarray(img))
+            prediction1 = loaded_model.predict(img)
+            if prediction1[0][0] == prediction1.max():
+                st.write(f'<p style="color:White;font-size: 50px;"><strong>The Breastmnist Sample is malignant </strong></p>', 
+                         unsafe_allow_html=True)
+                st.write(f'<p style="color:White;font-size: 50px;"><strong>Prediction: {prediction1.max()} </strong></p>', 
+                         unsafe_allow_html=True)
+                st.balloons()   
+                image = im.open('/Users/debasish/Downloads/Plots/AUC_brst.png')
+                st.image(image,use_column_width=50)
+         
+                image = im.open('//Users/debasish/Downloads/Plots/accuracy_brst.png')
+                st.image(image,use_column_width=50)
+
+                image = im.open('/Users/debasish/Downloads/Plots/Loss_brst.png')
+                st.image(image)
+            elif prediction1[0][1] == prediction1.max():
+                st.write(f'<p style="color:White;font-size: 50px;"><strong>The Breastmnist Sample is normal, benign </strong></p>', 
+                         unsafe_allow_html=True)
+                st.write(f'<p style="color:White;font-size: 50px;"><strong>Prediction: {prediction1.max()} </strong></p>', 
+                         unsafe_allow_html=True)
+                st.balloons()   
+                image = im.open('/Users/debasish/Downloads/Plots/AUC_brst.png')
+                st.image(image,use_column_width=50)
+         
+                image = im.open('//Users/debasish/Downloads/Plots/accuracy_brst.png')
+                st.image(image,use_column_width=50)
+
+                image = im.open('/Users/debasish/Downloads/Plots/Loss_brst.png')
+                st.image(image)
+            else:
+                st.write(f'<p style="color:White;font-size: 50px;"><strong>The Breastmnist Sample is not a proper sample </strong></p>', 
+                         unsafe_allow_html=True)
+                
+        else:
+            st.warning('Please upload an image')
+            
+        
+
+if selected == "Bloodmnist":
     st.title('Image Classifier')
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
     add_selectbox = st.sidebar.selectbox("Model Selection:", 
-                                        ("CNN Model", "Model2","Best Model","Please select model"),
+                                        ("CNN Bloodmnist", "Model2","Best Model","Please select model"),
                                         index=3
                                         )
-    if add_selectbox == 'CNN Model':
+    if add_selectbox == 'CNN Bloodmnist':
         with st.sidebar:
             if uploaded_file is not None:
                 st.image(uploaded_file, caption='Uploaded Image', use_column_width=True)
@@ -137,60 +196,15 @@ if selected == "Bloodminst":
         st.balloons()   
         col1,col2=st.columns(2)
         with col1:
-            image = im.open('/Users/debasish/Downloads/AUC_bld.jpg')
+            image = im.open('/Users/debasish/Downloads/Plots/AUC_bld.jpg')
             st.image(image)
         with col2:
-            image = im.open('/Users/debasish/Downloads/Loss_accuracy_bld.png')
+            image = im.open('/Users/debasish/Downloads/Plots/Loss_accuracy_bld.png')
             st.image(image)
     elif add_selectbox == 'Please select model':
         st.warning('No option is selected')
     else:
         st.warning('Please upload an image')
-        
-if selected == "Breastminst":
-    st.title('Image Classifier')
-    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-    with st.sidebar:
-        selected2 = option_menu(
-            menu_title="Model Selection",  # required
-            options=["CNN Model", "Model2","Best Model"],  # required
-            icons=["circle", "square","traingle"],  # optional
-            menu_icon="cast",  # optional
-            default_index=0,  # optional
-            
-        )
-    if selected2== "CNN Model" : 
-        if uploaded_file is not None:
-            with st.sidebar:
-                st.image(uploaded_file, caption='Uploaded Image', use_column_width=True)
-                img = im.open(uploaded_file)
-            img = im.open(uploaded_file)
-            img = preprocess(np.asarray(img))
-            prediction1 = loaded_model.predict(img)
-            if prediction1[0][0] == prediction1.max():
-                st.write(f'<p style="color:White;font-size: 50px;"><strong>The Breastmnist Sample is malignant </strong></p>', 
-                         unsafe_allow_html=True)
-                st.write(f'<p style="color:White;font-size: 50px;"><strong>Prediction: {prediction1.max()} </strong></p>', 
-                         unsafe_allow_html=True)
-            elif prediction1[0][1] == prediction1.max():
-                st.write(f'<p style="color:White;font-size: 50px;"><strong>The Breastmnist Sample is normal, benign </strong></p>', 
-                         unsafe_allow_html=True)
-                st.write(f'<p style="color:White;font-size: 50px;"><strong>Prediction: {prediction1.max()} </strong></p>', 
-                         unsafe_allow_html=True)
-            else:
-                st.write(f'<p style="color:White;font-size: 50px;"><strong>The Breastmnist Sample is not a proper sample </strong></p>', 
-                         unsafe_allow_html=True)
-                st.write(f'<p style="color:#3A7355;font-size: 50px;"><strong>Prediction: {prediction}</strong></p>', 
-                         unsafe_allow_html=True)
-            st.balloons()   
-            image = im.open('/Users/debasish/Downloads/AUC_brst.png')
-            st.image(image,use_column_width=50)
- 
-            image = im.open('/Users/debasish/Downloads/accuracy_brst.png')
-            st.image(image,use_column_width=50)
-
-            image = im.open('/Users/debasish/Downloads/Loss_brst.png')
-            st.image(image)
         
 if selected == "Credits":
     st.markdown('''
