@@ -7,4 +7,4 @@ Pillow==9.4.0
 scikit_learn==1.2.2
 streamlit==1.19.0
 streamlit_option_menu==0.3.2
-tensorflow==2.9.1
+tensorflow==2.12.0rc0
