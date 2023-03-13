@@ -5,7 +5,6 @@ import cv2
 import streamlit as st
 from PIL import Image as im
 from streamlit_option_menu import option_menu
-import joblib
 import tensorflow as tf
 from keras.preprocessing.image import ImageDataGenerator
 import matplotlib.pyplot as plt
