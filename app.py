@@ -114,13 +114,13 @@ if selected == "Breastmnist":
                 st.write(f'<p style="color:White;font-size: 50px;"><strong>Prediction: {prediction1.max()} </strong></p>', 
                          unsafe_allow_html=True)
                 st.balloons()   
-                image = im.open('/Users/debasish/Downloads/Plots/AUC_brst.png')
+                image = im.open('plots/AUC_brst.png')
                 st.image(image,use_column_width=50)
          
-                image = im.open('//Users/debasish/Downloads/Plots/accuracy_brst.png')
+                image = im.open('plots/accuracy_brst.png')
                 st.image(image,use_column_width=50)
 
-                image = im.open('/Users/debasish/Downloads/Plots/Loss_brst.png')
+                image = im.open('plots/Loss_brst.png')
                 st.image(image)
             else:
                 st.write(f'<p style="color:White;font-size: 50px;"><strong>The Breastmnist Sample is not a proper sample </strong></p>', 
@@ -196,10 +196,10 @@ if selected == "Bloodmnist":
         st.balloons()   
         col1,col2=st.columns(2)
         with col1:
-            image = im.open('/Users/debasish/Downloads/Plots/AUC_bld.jpg')
+            image = im.open('plots/AUC_bld.jpg')
             st.image(image)
         with col2:
-            image = im.open('/Users/debasish/Downloads/Plots/Loss_accuracy_bld.png')
+            image = im.open('plots/Loss_accuracy_bld.png')
             st.image(image)
     elif add_selectbox == 'Please select model':
         st.warning('No option is selected')
