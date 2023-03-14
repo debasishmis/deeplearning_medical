@@ -1,8 +1,6 @@
 keras==2.12.0rc1
-matplotlib==3.5.2
 numpy==1.22
 opencv_python==4.7.0.72
-Pillow==9.4.0
 scikit_learn==1.2.2
 streamlit==1.19.0
 streamlit_option_menu==0.3.2
