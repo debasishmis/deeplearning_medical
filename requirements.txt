@@ -1,7 +1,7 @@
-keras==2.4.3
+keras==2.8.0
 numpy==1.22
 opencv_python==4.7.0.72
 scikit_learn==1.2.2
 streamlit==1.19.0
 streamlit_option_menu==0.3.2
-tensorflow==2.5.0 
+tensorflow==2.8.0
